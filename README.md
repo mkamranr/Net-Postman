@@ -10,57 +10,58 @@ The application is designed with a modern, dark-themed interface that maximizes 
 
 ## Project Structure
 
-NetPostman/
-├── NetPostman.sln                          # Solution file
-├── README.md                               # Documentation
-└── src/
-    ├── NetPostman.Core/                    # Core layer
-    │   ├── Entities/                       # Domain entities
-    │   │   ├── Workspace.cs               # Workspace for organizing collections
-    │   │   ├── Collection.cs              # Collection of requests
-    │   │   ├── Request.cs                 # HTTP request configuration
-    │   │   ├── Environment.cs             # Environment with variables
-    │   │   └── RequestHistory.cs          # History of executed requests
-    │   └── Interfaces/                    # Abstractions
-    │       ├── IHttpRequestService.cs     # HTTP request execution interface
-    │       ├── ICollectionRepository.cs   # Collection operations
-    │       ├── IWorkspaceRepository.cs    # Workspace operations
-    │       ├── IEnvironmentRepository.cs  # Environment operations
-    │       └── IRequestHistoryRepository.cs # History operations
-    │
-    ├── NetPostman.Infrastructure/          # Infrastructure layer
-    │   ├── Data/
-    │   │   ├── NetPostmanDbContext.cs     # EF Core database context
-    │   │   ├── NetPostmanDbContextFactory.cs # Design-time factory
-    │   │   └── DatabaseInitializer.cs     # Database seeding
-    │   ├── Repositories/                   # Repository implementations
-    │   │   ├── CollectionRepository.cs
-    │   │   ├── WorkspaceRepository.cs
-    │   │   ├── EnvironmentRepository.cs
-    │   │   └── RequestHistoryRepository.cs
-    │   └── Services/
-    │       └── HttpRequestService.cs      # HTTP request execution
-    │
-    └── NetPostman.Web/                     # Web layer (MVC)
-        ├── Controllers/
-        │   ├── HomeController.cs          # Main controller for requests
-        │   ├── CollectionController.cs    # Collection management
-        │   ├── EnvironmentController.cs   # Environment management
-        │   └── HistoryController.cs       # History management
-        ├── ViewModels/                     # View models
-        ├── Views/                          # Razor views
-        │   ├── Home/Index.cshtml          # Main application view
-        │   └── Shared/_ErrorLayout.cshtml
-        ├── Services/
-        │   └── DependencyInjection.cs     # Service registration
-        ├── wwwroot/
-        │   ├── css/style.css              # Dark theme styling
-        │   ├── js/app.js                  # Frontend JavaScript
-        │   └── lib/codemirror/            # CodeMirror for syntax highlighting
-        ├── appsettings.json               # Configuration
-        ├── web.config                     # IIS configuration
-        ├── Program.cs                     # Application entry point
-        └── Startup.cs                     # Application configuration
+<pre style="background: rgb(250, 250, 250); color: rgb(56, 58, 66); font-family: &quot;Fira Code&quot;, &quot;Fira Mono&quot;, Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace; direction: ltr; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; line-height: 1.5; tab-size: 2; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; border-radius: 0.3em;"><code style="white-space: pre; background: rgb(250, 250, 250); color: rgb(56, 58, 66); font-family: &quot;Fira Code&quot;, &quot;Fira Mono&quot;, Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace; direction: ltr; text-align: left; word-spacing: normal; word-break: normal; line-height: 1.5; tab-size: 2; hyphens: none;"><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;"><span>NetPostman/
+</span></span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">├── NetPostman.sln                          # Solution file
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">├── README.md                               # Documentation
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">└── src/
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    ├── NetPostman.Core/                    # Core layer
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   ├── Entities/                       # Domain entities
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Workspace.cs               # Workspace for organizing collections
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Collection.cs              # Collection of requests
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Request.cs                 # HTTP request configuration
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Environment.cs             # Environment with variables
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   └── RequestHistory.cs          # History of executed requests
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   └── Interfaces/                    # Abstractions
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── IHttpRequestService.cs     # HTTP request execution interface
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── ICollectionRepository.cs   # Collection operations
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── IWorkspaceRepository.cs    # Workspace operations
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── IEnvironmentRepository.cs  # Environment operations
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       └── IRequestHistoryRepository.cs # History operations
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    ├── NetPostman.Infrastructure/          # Infrastructure layer
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   ├── Data/
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── NetPostmanDbContext.cs     # EF Core database context
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── NetPostmanDbContextFactory.cs # Design-time factory
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   └── DatabaseInitializer.cs     # Database seeding
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   ├── Repositories/                   # Repository implementations
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── CollectionRepository.cs
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── WorkspaceRepository.cs
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── EnvironmentRepository.cs
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   └── RequestHistoryRepository.cs
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   └── Services/
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       └── HttpRequestService.cs      # HTTP request execution
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    └── NetPostman.Web/                     # Web layer (MVC)
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Controllers/
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── HomeController.cs          # Main controller for requests
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── CollectionController.cs    # Collection management
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── EnvironmentController.cs   # Environment management
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── HistoryController.cs       # History management
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── ViewModels/                     # View models
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Views/                          # Razor views
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── Home/Index.cshtml          # Main application view
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── Shared/_ErrorLayout.cshtml
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Services/
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── DependencyInjection.cs     # Service registration
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── wwwroot/
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── css/style.css              # Dark theme styling
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── js/app.js                  # Frontend JavaScript
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── lib/codemirror/            # CodeMirror for syntax highlighting
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── appsettings.json               # Configuration
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── web.config                     # IIS configuration
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Program.cs                     # Application entry point
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        └── Startup.cs                     # Application configuration
+</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;"></span></code></pre>
 
 ## Key Features
 
