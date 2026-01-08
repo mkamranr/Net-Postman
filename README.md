@@ -8,6 +8,60 @@ NetPostman provides a complete API development environment that runs entirely in
 
 The application is designed with a modern, dark-themed interface that maximizes screen real estate for API development tasks. The three-panel layout mirrors popular tools like Postman and VS Code, ensuring a familiar experience for developers transitioning from desktop applications. All requests are executed server-side through a dedicated proxy service, allowing seamless communication with APIs across different domains without browser security restrictions.
 
+## Project Structure
+
+NetPostman/
+├── NetPostman.sln                          # Solution file
+├── README.md                               # Documentation
+└── src/
+    ├── NetPostman.Core/                    # Core layer
+    │   ├── Entities/                       # Domain entities
+    │   │   ├── Workspace.cs               # Workspace for organizing collections
+    │   │   ├── Collection.cs              # Collection of requests
+    │   │   ├── Request.cs                 # HTTP request configuration
+    │   │   ├── Environment.cs             # Environment with variables
+    │   │   └── RequestHistory.cs          # History of executed requests
+    │   └── Interfaces/                    # Abstractions
+    │       ├── IHttpRequestService.cs     # HTTP request execution interface
+    │       ├── ICollectionRepository.cs   # Collection operations
+    │       ├── IWorkspaceRepository.cs    # Workspace operations
+    │       ├── IEnvironmentRepository.cs  # Environment operations
+    │       └── IRequestHistoryRepository.cs # History operations
+    │
+    ├── NetPostman.Infrastructure/          # Infrastructure layer
+    │   ├── Data/
+    │   │   ├── NetPostmanDbContext.cs     # EF Core database context
+    │   │   ├── NetPostmanDbContextFactory.cs # Design-time factory
+    │   │   └── DatabaseInitializer.cs     # Database seeding
+    │   ├── Repositories/                   # Repository implementations
+    │   │   ├── CollectionRepository.cs
+    │   │   ├── WorkspaceRepository.cs
+    │   │   ├── EnvironmentRepository.cs
+    │   │   └── RequestHistoryRepository.cs
+    │   └── Services/
+    │       └── HttpRequestService.cs      # HTTP request execution
+    │
+    └── NetPostman.Web/                     # Web layer (MVC)
+        ├── Controllers/
+        │   ├── HomeController.cs          # Main controller for requests
+        │   ├── CollectionController.cs    # Collection management
+        │   ├── EnvironmentController.cs   # Environment management
+        │   └── HistoryController.cs       # History management
+        ├── ViewModels/                     # View models
+        ├── Views/                          # Razor views
+        │   ├── Home/Index.cshtml          # Main application view
+        │   └── Shared/_ErrorLayout.cshtml
+        ├── Services/
+        │   └── DependencyInjection.cs     # Service registration
+        ├── wwwroot/
+        │   ├── css/style.css              # Dark theme styling
+        │   ├── js/app.js                  # Frontend JavaScript
+        │   └── lib/codemirror/            # CodeMirror for syntax highlighting
+        ├── appsettings.json               # Configuration
+        ├── web.config                     # IIS configuration
+        ├── Program.cs                     # Application entry point
+        └── Startup.cs                     # Application configuration
+
 ## Key Features
 
 ### Request Builder
