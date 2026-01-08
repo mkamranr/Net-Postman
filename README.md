@@ -8,61 +8,6 @@ NetPostman provides a complete API development environment that runs entirely in
 
 The application is designed with a modern, dark-themed interface that maximizes screen real estate for API development tasks. The three-panel layout mirrors popular tools like Postman and VS Code, ensuring a familiar experience for developers transitioning from desktop applications. All requests are executed server-side through a dedicated proxy service, allowing seamless communication with APIs across different domains without browser security restrictions.
 
-## Project Structure
-
-<pre style="background: rgb(250, 250, 250); color: rgb(56, 58, 66); font-family: &quot;Fira Code&quot;, &quot;Fira Mono&quot;, Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace; direction: ltr; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; line-height: 1.5; tab-size: 2; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; border-radius: 0.3em;"><code style="white-space: pre; background: rgb(250, 250, 250); color: rgb(56, 58, 66); font-family: &quot;Fira Code&quot;, &quot;Fira Mono&quot;, Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace; direction: ltr; text-align: left; word-spacing: normal; word-break: normal; line-height: 1.5; tab-size: 2; hyphens: none;"><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;"><span>NetPostman/
-</span></span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">├── NetPostman.sln                          # Solution file
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">├── README.md                               # Documentation
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">└── src/
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    ├── NetPostman.Core/                    # Core layer
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   ├── Entities/                       # Domain entities
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Workspace.cs               # Workspace for organizing collections
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Collection.cs              # Collection of requests
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Request.cs                 # HTTP request configuration
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── Environment.cs             # Environment with variables
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   └── RequestHistory.cs          # History of executed requests
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   └── Interfaces/                    # Abstractions
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── IHttpRequestService.cs     # HTTP request execution interface
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── ICollectionRepository.cs   # Collection operations
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── IWorkspaceRepository.cs    # Workspace operations
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       ├── IEnvironmentRepository.cs  # Environment operations
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       └── IRequestHistoryRepository.cs # History operations
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    ├── NetPostman.Infrastructure/          # Infrastructure layer
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   ├── Data/
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── NetPostmanDbContext.cs     # EF Core database context
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── NetPostmanDbContextFactory.cs # Design-time factory
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   └── DatabaseInitializer.cs     # Database seeding
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   ├── Repositories/                   # Repository implementations
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── CollectionRepository.cs
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── WorkspaceRepository.cs
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   ├── EnvironmentRepository.cs
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   │   └── RequestHistoryRepository.cs
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │   └── Services/
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │       └── HttpRequestService.cs      # HTTP request execution
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    │
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">    └── NetPostman.Web/                     # Web layer (MVC)
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Controllers/
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── HomeController.cs          # Main controller for requests
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── CollectionController.cs    # Collection management
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── EnvironmentController.cs   # Environment management
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── HistoryController.cs       # History management
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── ViewModels/                     # View models
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Views/                          # Razor views
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── Home/Index.cshtml          # Main application view
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── Shared/_ErrorLayout.cshtml
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Services/
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── DependencyInjection.cs     # Service registration
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── wwwroot/
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── css/style.css              # Dark theme styling
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   ├── js/app.js                  # Frontend JavaScript
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        │   └── lib/codemirror/            # CodeMirror for syntax highlighting
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── appsettings.json               # Configuration
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── web.config                     # IIS configuration
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        ├── Program.cs                     # Application entry point
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;">        └── Startup.cs                     # Application configuration
-</span><span style="display: block; white-space: pre; line-height: 24px; font-size: 14px; font-weight: 500;"></span></code></pre>
-
 ## Key Features
 
 ### Request Builder
